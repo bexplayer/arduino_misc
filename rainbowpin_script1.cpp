@@ -4,13 +4,13 @@ Arduino Uno / Arduino Nano
 by Bex
 2023-01-20
 */
-#include <LiquidCrystal.h>
+#include <Adafruit_LiquidCrystal.h>
 // initialize lcd
-LiquidCrystal lcd_1(0);
+Adafruit_LiquidCrystal lcd_1(0);
 // variable declaration
 const int pins[]={1, 2, 3, 4, 5, 6};
 const int lcdPin=15;
-const char* pinColours[]={"red", };
+const char* pinColours[]={"red", "orange", "yellow", "green", "blue", "white"};
 // temporary variable declaration
 int setupValue;
 int loopTimes;
@@ -22,6 +22,9 @@ void setup(){
   Serial.begin(9600);
   lcd_1.begin(16, 2);
   lcd_1.setCursor(0, 0);
+  lcd_1.print("bexplayer@github");
+  lcd_1.setCursor(0, 1);
+  lcd_1.print(0);
 }
 
 void loop(){
@@ -34,4 +37,5 @@ void loop(){
   Serial.print("Currently Lighting: ");
   Serial.println(pinColour[setupValue]);
   loopTimes++;
+  lcd_1.print(loopTimes++);
 }
